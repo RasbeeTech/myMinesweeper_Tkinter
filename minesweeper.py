@@ -11,7 +11,7 @@ class minesweeper:
         self.rows, self.columns = self.set_difficulty(difficulty)
 
         self.tiles = self.create_tiles()
-        self.bomb_tiles = self.set_bombs(self.tiles)
+        self.bomb_tiles = self.set_bombs()
 
         self.to_win = self.rows * self.columns - len(self.bomb_tiles)
         self.is_game_over = False
@@ -33,15 +33,16 @@ class minesweeper:
         x = 0
         while x < cols:
             y = 0
-            buttons = []
+            tile = []
             while y < rows:
-                buttons.append(tk.Label(text="", bg="green", height="2", width="4", borderwidth=5, relief="raised"))
-                buttons[y].bind("<Button-1>", self.left_click)
-                buttons[y].bind("<Button-2>", self.right_click)
-                buttons[y].grid(row=x, column=y)
+                tile.append(tk.Label(text="", bg="green", height="2", width="4", borderwidth=5, relief="raised"))
+                tile[y].bind("<Button-1>", self.left_click)
+                tile[y].bind("<Button-2>", self.right_click)
+                tile[y].grid(row=x, column=y)
                 y += 1
-            tiles.append(buttons)
+            tiles.append(tile)
             x += 1
+
         return tiles
 
     def right_click(self, event):
@@ -127,7 +128,7 @@ class minesweeper:
             func(row + 1, column)
             func(row + 1, column + 1)
 
-    def set_bombs(self, tiles_list):
+    def set_bombs(self):
         num_of_bombs = self.bombs
         bomb_tiles = []
         bombs_planted = 0
@@ -136,7 +137,6 @@ class minesweeper:
             row = randrange(10)
             col = randrange(10)
             if [row, col] not in bomb_tiles:
-                # tiles_list[row][col].config(bg="purple")
                 bomb_tiles.append([row, col])
                 bombs_planted += 1
         return bomb_tiles
@@ -171,9 +171,6 @@ class minesweeper:
         for bomb in self.bomb_tiles:
             self.tiles[bomb[0]][bomb[1]].config(bg="red")
         new_game(self.window, "Game Over")
-        # try_again = tk.Tk()
-        # game_over = new_game(try_again, "try_again?")
-        # self.window.destroy()
 
     def you_win(self):
         new_game(self.window, "YOU WIN!")
