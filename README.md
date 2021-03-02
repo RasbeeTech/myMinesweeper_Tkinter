@@ -14,15 +14,15 @@
  
  ## Process:
  1.	Create a tkinter window.
- '''python
+ ```python
  import tkinter as tk
  
  root = tk.Tk() # Creates tkinter window
  root.mainloop() # Runs window
- '''
+ ```
  2.	Create tkinter labels and arrange them using grid() (I accomplished this by using a nested while loop).
  		Note: Be sure to save labels where the can be accessed later.
- '''python
+ ```python
  tiles = []
  rows = 10
  cols = 10
@@ -43,11 +43,11 @@
  	# adds the created row of row of labels to the tiles[]
  	tiles.append(tile)
  	x += 1
- '''
+ ```
  3.	Bind left-click and right-click event functions to each label.
  		Left-click reveals() tile and adjacent tiles.
  		Right-click sets flags tile.
-  '''python
+ ```python
  def right_click(event):
  	if not is_game_over:
         column = event.widget.grid_info()["column"]
@@ -62,9 +62,9 @@
         reveal(row, column)
         if len(revealed) == to_win:
             you_win()
- '''
+ ```
  4. Using random number generator, get x and y locations to place mines.
- '''python
+ ```python
  from random import randrange
  
  def set_bombs():
@@ -81,9 +81,9 @@
         if [row, col] not in bomb_tiles:
         	bomb_tiles.append([row, col])
         	bombs_planted += 1
- '''
+ ```
  5. Create a function to check adjacent tiles.
- '''python
+ ```python
  # Takes location of a tile and applies function to all adjacent tiles
  def check_adjacent_tiles(row, column, func):
  	r = row
@@ -137,9 +137,9 @@
         func(row + 1, column - 1)
         func(row + 1, column)
         func(row + 1, column + 1)
- '''
+ ```
  6. Create function to set indicators for bomb locations when tile is revealed.
- '''python
+ ```python
  indicators = []
  
  def set_indicators():
@@ -151,9 +151,9 @@
  	# Make sure not to set indicators on top of a mine
 	if [row, column] not in bomb_tiles:
     	indicators.append([row, column])
- '''
+ ```
  7.	Finally, create actions for when the game is Win and Lose.
- '''python
+ ```python
  def game_over():
 	is_game_over = True
 	for bomb in bomb_tiles:
@@ -163,5 +163,5 @@
         
  def you_win():
 	new_game(window, "YOU WIN!")
- '''
+ ```
  	
