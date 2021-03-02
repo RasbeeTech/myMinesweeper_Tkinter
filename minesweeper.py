@@ -6,15 +6,15 @@ class minesweeper:
     def __init__(self, window, difficulty="easy"):
         self.window = window
         self.window.title("Minesweeper")
-        self.bombs = 1
+        self.bombs = 15
 
         self.rows, self.columns = self.set_difficulty(difficulty)
 
         self.tiles = self.create_tiles()
         self.bomb_tiles = self.set_bombs(self.tiles)
 
-        self.to_win = self.rows*self.columns-len(self.bomb_tiles)
-
+        self.to_win = self.rows * self.columns - len(self.bomb_tiles)
+        self.is_game_over = False
         self.indicators = []
         self.revealed = []
 
@@ -45,15 +45,20 @@ class minesweeper:
         return tiles
 
     def right_click(self, event):
-        event.widget.config(text="X")
+        if not self.is_game_over:
+            column = event.widget.grid_info()["column"]
+            row = event.widget.grid_info()["row"]
+
+            if[row,column] not in self.revealed:
+                event.widget.config(text="X")
 
     def left_click(self, event):
-        column = event.widget.grid_info()["column"]
-        row = event.widget.grid_info()["row"]
-        self.reveal(row, column)
-        if len(self.revealed) == self.to_win:
-            self.you_win()
-
+        if not self.is_game_over:
+            column = event.widget.grid_info()["column"]
+            row = event.widget.grid_info()["row"]
+            self.reveal(row, column)
+            if len(self.revealed) == self.to_win:
+                self.you_win()
 
     def reveal(self, row, column):
         if [row, column] not in self.revealed:
@@ -162,6 +167,7 @@ class minesweeper:
             self.tiles[row][column].config(text=count, fg="black", bg="#a1776a", relief="ridge")
 
     def game_over(self):
+        self.is_game_over = True
         for bomb in self.bomb_tiles:
             self.tiles[bomb[0]][bomb[1]].config(bg="red")
         new_game(self.window, "Game Over")
@@ -179,13 +185,15 @@ def new_game(window, message):
     msg.grid(row=0, column=0, columnspan=2, pady=5, padx=5)
     label = tk.Label(new_window, text="Try again?")
     label.grid(row=1, column=0, columnspan=2, pady=5, padx=5)
-    button_yes = tk.Button(new_window, text="Yes", command= lambda: retry_game(window))
+    button_yes = tk.Button(new_window, text="Yes", command=lambda: retry_game(window))
     button_yes.grid(row=2, column=0, columnspan=1, pady=5, padx=5)
-    button_no = tk.Button(new_window, text="No", command= lambda: quit_game(window))
+    button_no = tk.Button(new_window, text="No", command=lambda: quit_game(window))
     button_no.grid(row=2, column=1, columnspan=1, pady=5, padx=5)
+
 
 def quit_game(window):
     root.destroy()
+
 
 def retry_game(window):
     window.destroy()
