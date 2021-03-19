@@ -9,6 +9,7 @@
  ## Sample:
  
  ![alt text](https://github.com/RasbeeTech/Minesweeper/blob/main/sample_image.jpeg)
+ ![alt text](https://github.com/RasbeeTech/Minesweeper/blob/main/sample_image_2.jpeg)
  
  To see finished program code, click [here](https://github.com/RasbeeTech/Minesweeper/blob/main/minesweeper.py)
  
