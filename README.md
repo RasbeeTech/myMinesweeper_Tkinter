@@ -7,7 +7,7 @@
  TkInter is used to create the graphical user interface
  
  ## Sample:
- Start screen                  |  Game play
+ Game play                    |  Game over
  :-------------------------:|:-------------------------: 
  ![alt text](https://github.com/RasbeeTech/Minesweeper/blob/main/sample_image.jpeg) | ![alt text](https://github.com/RasbeeTech/Minesweeper/blob/main/sample_image_2.jpeg)
  
