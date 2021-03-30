@@ -7,11 +7,18 @@
  TkInter is used to create the graphical user interface
  
  ## Sample:
+ Start screen                  |  Game play
+ :-------------------------:|:-------------------------: 
+ ![alt text](https://github.com/RasbeeTech/Minesweeper/blob/main/sample_image.jpeg) | ![alt text](https://github.com/RasbeeTech/Minesweeper/blob/main/sample_image_2.jpeg)
  
- ![alt text](https://github.com/RasbeeTech/Minesweeper/blob/main/sample_image.jpeg)
- ![alt text](https://github.com/RasbeeTech/Minesweeper/blob/main/sample_image_2.jpeg)
+ To see finished program code, click [here](https://github.com/RasbeeTech/Minesweeper/blob/main/minesweeper.py)  
  
- To see finished program code, click [here](https://github.com/RasbeeTech/Minesweeper/blob/main/minesweeper.py)
+ ## Minesweeper rules
+ The rules of the game are fairly simple.  Uncover tiles and use indicators to avoid mines.  To win, uncover all tiles that do not have mines.  The numbered indicators represent the amount of mines in the adjacent tiles.
+ 
+ ## How to play
+ * Left-click: tile to reveal tile.  
+ * Right-click: to flag mine locations.  
  
  ## Process:
  1.	Create a tkinter window.
