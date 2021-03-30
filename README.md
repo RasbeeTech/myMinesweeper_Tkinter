@@ -1,4 +1,4 @@
-# Minesweeper
+# myMinesweeper_Tkinter
 
  A simple 10x10 Minesweeper game
  
